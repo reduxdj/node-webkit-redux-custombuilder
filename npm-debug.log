@@ -1,0 +1,92 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.0.2
+3 info using node@v0.10.32
+4 verbose node symlink /usr/local/bin/node
+5 verbose publish [ '.' ]
+6 verbose cache add [ '.', null ]
+7 verbose cache add spec="." args=[".",null]
+8 verbose parsed spec { raw: '.',
+8 verbose parsed spec   scope: null,
+8 verbose parsed spec   name: null,
+8 verbose parsed spec   rawSpec: '.',
+8 verbose parsed spec   spec: '/Users/PatrickDj/node-webkit-redux-custombuilder',
+8 verbose parsed spec   type: 'local' }
+9 verbose cache add local package /Users/PatrickDj/node-webkit-redux-custombuilder
+10 silly lockFile 3a52ce78- .
+11 verbose lock . /Users/PatrickDj/.npm/3a52ce78-.lock
+12 verbose tar pack [ '/Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package.tgz',
+12 verbose tar pack   '.' ]
+13 verbose tarball /Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package.tgz
+14 verbose folder .
+15 info prepublish Node-wbebkit-redux-custombuilder@0.0.1
+16 silly lockFile 1f1177db-tar tar://.
+17 verbose lock tar://. /Users/PatrickDj/.npm/1f1177db-tar.lock
+18 silly lockFile dbb83cf6--custombuilder-0-0-1-package-tgz tar:///Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package.tgz
+19 verbose lock tar:///Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package.tgz /Users/PatrickDj/.npm/dbb83cf6--custombuilder-0-0-1-package-tgz.lock
+20 silly lockFile 1f1177db-tar tar://.
+21 silly lockFile 1f1177db-tar tar://.
+22 silly lockFile dbb83cf6--custombuilder-0-0-1-package-tgz tar:///Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package.tgz
+23 silly lockFile dbb83cf6--custombuilder-0-0-1-package-tgz tar:///Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package.tgz
+24 silly lockFile c16a65f7-edux-custombuilder-0-0-1-package /Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package
+25 verbose lock /Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package /Users/PatrickDj/.npm/c16a65f7-edux-custombuilder-0-0-1-package.lock
+26 silly lockFile c16a65f7-edux-custombuilder-0-0-1-package /Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package
+27 silly lockFile c16a65f7-edux-custombuilder-0-0-1-package /Users/PatrickDj/.npm/Node-wbebkit-redux-custombuilder/0.0.1/package
+28 silly lockFile 3a52ce78- .
+29 silly lockFile 3a52ce78- .
+30 silly publish { name: 'Node-wbebkit-redux-custombuilder',
+30 silly publish   version: '0.0.1',
+30 silly publish   description: 'Here\'s a working node webkit builder, that works',
+30 silly publish   keywords: [],
+30 silly publish   homepage: 'https://github.com/reduxdj/node-webkit-redux-custombuilder',
+30 silly publish   bugs: { url: 'https://github.com/reduxdj/node-webkit-redux-custombuilder/issues' },
+30 silly publish   author:
+30 silly publish    { name: 'Patrick Lemiuex',
+30 silly publish      email: 'patricklemiuex@gmail.com',
+30 silly publish      url: 'https://github.com/reduxdj' },
+30 silly publish   repository:
+30 silly publish    { type: 'git',
+30 silly publish      url: 'https://github.com/reduxdj/node-webkit-redux-custombuilder' },
+30 silly publish   dependencies: {},
+30 silly publish   devDependencies:
+30 silly publish    { grunt: '~0.4.5',
+30 silly publish      'grunt-contrib-concat': '~0.5.0',
+30 silly publish      'grunt-contrib-jshint': '~0.10.0',
+30 silly publish      'grunt-contrib-rename': '0.0.3',
+30 silly publish      'grunt-contrib-compress': '^0.10.0',
+30 silly publish      'grunt-contrib-clean': '~0.6.0',
+30 silly publish      'grunt-contrib-copy': '~0.5.0',
+30 silly publish      'load-grunt-tasks': '^0.6.0',
+30 silly publish      'time-grunt': '^0.4.0',
+30 silly publish      'concat-files': '~0.1.0' },
+30 silly publish   engines: { node: '>=0.8.0' },
+30 silly publish   readme: 'node-webkit-redux-custombuilder\n===============================\n\nHere\'s a simple way to create desktop apps using node webkit:\n\nRequirements Grunt-cli\n\nnpm install\nsudo npm install -g grunt-cli\n\nChange the app name in package json to whatever you want\n\nthen run:\n\nDeploy Linux:\n\ngrunt dist-linux32\n\nDeploy Win:\n\ngrunt dist-win\n\nDeploy OSX:\n\ngrunt dist-mac',
+30 silly publish   readmeFilename: 'README.md',
+30 silly publish   gitHead: '76fdce0df6e84fdde108e57bab6fdca5d5248c05',
+30 silly publish   _id: 'Node-wbebkit-redux-custombuilder@0.0.1',
+30 silly publish   scripts: {},
+30 silly publish   _shasum: '3aae63e80da85ceabadf472a2147981b1128c311',
+30 silly publish   _from: '.' }
+31 verbose mapToRegistry name Node-wbebkit-redux-custombuilder
+32 verbose mapToRegistry uri https://registry.npmjs.org/Node-wbebkit-redux-custombuilder
+33 verbose publish registryBase https://registry.npmjs.org/
+34 verbose stack Error: Invalid name: "Node-wbebkit-redux-custombuilder"
+34 verbose stack     at ensureValidName (/usr/local/lib/node_modules/npm/node_modules/normalize-package-data/lib/fixer.js:315:15)
+34 verbose stack     at module.exports.fixNameField (/usr/local/lib/node_modules/npm/node_modules/normalize-package-data/lib/fixer.js:204:5)
+34 verbose stack     at RegClient.publish (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/publish.js:23:5)
+34 verbose stack     at /usr/local/lib/node_modules/npm/lib/publish.js:114:14
+34 verbose stack     at mapToRegistry (/usr/local/lib/node_modules/npm/lib/utils/map-to-registry.js:53:3)
+34 verbose stack     at publish_ (/usr/local/lib/node_modules/npm/lib/publish.js:102:3)
+34 verbose stack     at Array.1 (/usr/local/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+34 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+34 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:14:28)
+34 verbose stack     at chain (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:20:5)
+35 verbose cwd /Users/PatrickDj/node-webkit-redux-custombuilder
+36 error Darwin 13.4.0
+37 error argv "node" "/usr/local/bin/npm" "publish"
+38 error node v0.10.32
+39 error npm  v2.0.2
+40 error Invalid name: "Node-wbebkit-redux-custombuilder"
+41 error If you need help, you may report this error at:
+41 error     <http://github.com/npm/npm/issues>
+42 verbose exit [ 1, true ]
