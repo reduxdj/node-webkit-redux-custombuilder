@@ -9,8 +9,7 @@ contact me, and the same for Linux.
 
 requirements node, grunt-cli
 
-npm install
-sudo npm install -g grunt-cli
+sudo npm install -g grunt-cli && npm install
 
 Change the app name in package json to whatever you want, it's just there for the example
 
