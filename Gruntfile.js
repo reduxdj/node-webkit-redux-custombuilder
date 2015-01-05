@@ -15,6 +15,8 @@ module.exports = function (grunt) {
     distMac64: 'dist/MacOS64',
     distLinux32: 'dist/Linux32',
     distLinux64: 'dist/Linux64',
+    distWin32: 'dist/Win32',
+    distWin64: 'dist/Win64',
     distWin: 'dist/Win',
     tmp: 'buildTmp',
     resources: 'resources'
@@ -73,6 +75,24 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '<%= config.distWin %>/*',
+            '<%= config.tmp %>/*'
+          ]
+        }]
+      },
+      distWin32: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= config.distWin32 %>/*',
+            '<%= config.tmp %>/*'
+          ]
+        }]
+      },
+      distWin64: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= config.distWin64 %>/*',
             '<%= config.tmp %>/*'
           ]
         }]
@@ -174,6 +194,22 @@ module.exports = function (grunt) {
           dest: '<%= config.tmp %>/',
           src: '**'
         }]
+      },
+      copyWin32ToTmp: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.resources %>/node-webkit/Win32/',
+          dest: '<%= config.tmp %>/',
+          src: '**'
+        }]
+      },
+      copyWin64ToTmp: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.resources %>/node-webkit/Win64/',
+          dest: '<%= config.tmp %>/',
+          src: '**'
+        }]
       }
     },
     compress: {
@@ -189,7 +225,27 @@ module.exports = function (grunt) {
       },
       finalWindowsApp: {
         options: {
-          archive: '<%= config.distWin %>/testapp1.zip'
+          archive: '<%= config.distWin %>/RubiconMarketPlace.zip'
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= config.tmp %>',
+          src: ['**']
+        }]
+      },
+      finalWindows32App: {
+        options: {
+          archive: '<%= config.distWin32 %>/RubiconMarketPlace.zip'
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= config.tmp %>',
+          src: ['**']
+        }]
+      },
+      finalWindows64App: {
+        options: {
+          archive: '<%= config.distWin64 %>/RubiconMarketPlace.zip'
         },
         files: [{
           expand: true,
@@ -202,13 +258,13 @@ module.exports = function (grunt) {
       macApp32: {
         files: [{
           src: '<%= config.distMac32 %>/node-webkit.app',
-          dest: '<%= config.distMac32 %>/testapp1.app'
+          dest: '<%= config.distMac32 %>/RubiconMarketPlace.app'
         }]
       },
       macApp64: {
         files: [{
           src: '<%= config.distMac64 %>/node-webkit.app',
-          dest: '<%= config.distMac64 %>/testapp1.app'
+          dest: '<%= config.distMac64 %>/RubiconMarketPlace.app'
         }]
       },
       zipToApp: {
@@ -222,7 +278,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('chmod32', 'Add lost Permissions.', function () {
     var fs = require('fs'),
-      path = config.distMac32 + '/testapp1.app/Contents/';
+      path = config.distMac32 + '/RubiconMarketPlace.app/Contents/';
     fs.chmodSync(path + 'Frameworks/node-webkit Helper EH.app/Contents/MacOS/node-webkit Helper EH', '555');
     fs.chmodSync(path + 'Frameworks/node-webkit Helper NP.app/Contents/MacOS/node-webkit Helper NP', '555');
     fs.chmodSync(path + 'Frameworks/node-webkit Helper.app/Contents/MacOS/node-webkit Helper', '555');
@@ -231,7 +287,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('chmod64', 'Add lost Permissions.', function () {
     var fs = require('fs'),
-      path = config.distMac64 + '/testapp1.app/Contents/';
+      path = config.distMac64 + '/RubiconMarketPlace.app/Contents/';
     fs.chmodSync(path + 'Frameworks/node-webkit Helper EH.app/Contents/MacOS/node-webkit Helper EH', '555');
     fs.chmodSync(path + 'Frameworks/node-webkit Helper NP.app/Contents/MacOS/node-webkit Helper NP', '555');
     fs.chmodSync(path + 'Frameworks/node-webkit Helper.app/Contents/MacOS/node-webkit Helper', '555');
@@ -265,7 +321,7 @@ module.exports = function (grunt) {
     concat([
       'buildTmp/nw.exe',
       'buildTmp/app.nw'
-    ], 'buildTmp/testapp1.exe', function () {
+    ], 'buildTmp/RubiconMarketPlace.exe', function () {
       var fs = require('fs');
       fs.unlink('buildTmp/app.nw', function (error, stdout, stderr) {
         if (stdout) {
@@ -345,6 +401,24 @@ module.exports = function (grunt) {
     'compress:finalWindowsApp'
   ]);
 
+  grunt.registerTask('dist-win32', [
+    'clean:distWin32',
+    'copy:copyWin32ToTmp',
+    'compress:appToTmp',
+    'rename:zipToApp',
+    'createWindowsApp',
+    'compress:finalWindows32App'
+  ]);
+
+  grunt.registerTask('dist-win64', [
+    'clean:distWin64',
+    'copy:copyWin64ToTmp',
+    'compress:appToTmp',
+    'rename:zipToApp',
+    'createWindowsApp',
+    'compress:finalWindows64App'
+  ]);
+
   grunt.registerTask('dist-mac', [
     'clean:distMac64',
     'copy:webkit64',
@@ -367,7 +441,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('dmg', 'Create dmg from previously created app folder in dist.', function () {
     var done = this.async();
-    var createDmgCommand = 'resources/mac/package.sh "testapp1"';
+    var createDmgCommand = 'resources/mac/package.sh "RubiconMarketPlace"';
     require('child_process').exec(createDmgCommand, function (error, stdout, stderr) {
       var result = true;
       if (stdout) {
