@@ -11,7 +11,7 @@ requirements node, grunt-cli
 
 sudo npm install -g grunt-cli && npm install
 
-Change the app name in package json to whatever you want, it's just there for the example
+Change the appName in package json and config grunt object to whatever you want, it's just there for the example.
 
 
 Deploy Linux32 bit architecture:

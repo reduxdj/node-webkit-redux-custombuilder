@@ -1,0 +1,12 @@
+{
+  "name": "PlaylistPalace",
+  "description": "Paylist Power Editor",
+  "version": "0.1",
+  "main": "index.html",
+  "window": {
+    "fram" : false,
+    "toolbar": false,
+    "width": 1200,
+    "height": 800
+  }
+}
