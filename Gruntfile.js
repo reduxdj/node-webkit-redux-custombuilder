@@ -309,10 +309,10 @@ module.exports = (grunt) => {
   });
 
   grunt.registerTask('createLinuxApp', 'Create linux distribution.',  (version) => {
-    var done = this.async()
-    var childProcess = require('child_process')
-    var exec = childProcess.exec
-    var path = './' + (version === 'Linux64' ? config.distLinux64 : config.distLinux32)
+    const done = this.async()
+    const childProcess = require('child_process')
+    const exec = childProcess.exec
+    const path = './' + (version === 'Linux64' ? config.distLinux64 : config.distLinux32)
     exec(`mkdir -p ${path}; cp resources/node-webkit/${version}'/nw.pak ${path} && cp resources/node-webkit/${version}/nw ${path}/node-webkit`, (error, stdout, stderr) => {
       var result = true;
       if (stdout) {
@@ -368,43 +368,43 @@ module.exports = (grunt) => {
   });
 
   grunt.registerTask('setVersion', 'Set version to all needed files', (version) => {
-    var config = grunt.config.get(['config']);
-    var appPath = config.app;
-    var resourcesPath = config.resources;
-    var mainPackageJSON = grunt.file.readJSON('package.json');
-    var appPackageJSON = grunt.file.readJSON(appPath + '/package.json');
-    var infoPlistTmp = grunt.file.read(resourcesPath + '/mac/Info.plist.tmp', {
+    const config = grunt.config.get(['config'])
+    const appPath = config.app
+    const resourcesPath = config.resources
+    const mainPackageJSON = grunt.file.readJSON('package.json')
+    const appPackageJSON = grunt.file.readJSON(`${appPath}/package.json`)
+    const infoPlistTmp = grunt.file.read(`${resourcesPath}/mac/Info.plist.tmp`, {
       encoding: 'UTF8'
     });
-    var infoPlist = grunt.template.process(infoPlistTmp, {
+    const infoPlist = grunt.template.process(infoPlistTmp, {
       data: {
         version: version
       }
-    });
-    mainPackageJSON.version = version;
-    appPackageJSON.version = version;
+    })
+    mainPackageJSON.version = version
+    appPackageJSON.version = version
     grunt.file.write('package.json', JSON.stringify(mainPackageJSON, null, 2), {
       encoding: 'UTF8'
-    });
-    grunt.file.write(appPath + '/package.json', JSON.stringify(appPackageJSON, null, 2), {
+    })
+    grunt.file.write(appPath + `${appPath}/package.json`, JSON.stringify(appPackageJSON, null, 2), {
       encoding: 'UTF8'
-    });
-    grunt.file.write(resourcesPath + '/mac/Info.plist', infoPlist, {
+    })
+    grunt.file.write(resourcesPath + `${resourcesPath}/mac/Info.plist`, infoPlist, {
       encoding: 'UTF8'
-    });
-  });
+    })
+  })
 
   grunt.registerTask('dist-linux', [
     'clean:distLinux64',
     'copy:appLinux',
     'createLinuxApp:Linux64'
-  ]);
+  ])
 
   grunt.registerTask('dist-linux32', [
     'clean:distLinux32',
     'copy:appLinux32',
     'createLinuxApp:Linux32'
-  ]);
+  ])
 
   grunt.registerTask('dist-win', [
     'clean:distWin',
@@ -413,7 +413,7 @@ module.exports = (grunt) => {
     'rename:zipToApp',
     'createWindowsApp',
     'compress:finalWindowsApp'
-  ]);
+  ])
 
   grunt.registerTask('dist-win32', [
     'clean:distWin32',
@@ -422,7 +422,7 @@ module.exports = (grunt) => {
     'rename:zipToApp',
     'createWindowsApp',
     'compress:finalWindows32App'
-  ]);
+  ])
 
   grunt.registerTask('dist-win64', [
     'clean:distWin64',
@@ -431,7 +431,7 @@ module.exports = (grunt) => {
     'rename:zipToApp',
     'createWindowsApp',
     'compress:finalWindows64App'
-  ]);
+  ])
 
   grunt.registerTask('dist-mac', [
     'clean:distMac64',
@@ -439,7 +439,7 @@ module.exports = (grunt) => {
     'copy:appMacos64',
     'rename:macApp64',
     'chmod64'
-  ]);
+  ])
 
   grunt.registerTask('dist-mac32', [
     'clean:distMac32',
@@ -447,26 +447,26 @@ module.exports = (grunt) => {
     'copy:appMacos32',
     'rename:macApp32',
     'chmod32'
-  ]);
+  ])
 
   grunt.registerTask('check', [
     'jshint'
-  ]);
+  ])
 
   grunt.registerTask('dmg', 'Create dmg from previously created app folder in dist.',  () => {
-    const p = new Promise( (resolve, reject) =>{
+    const p = new Promise( (resolve, reject) => {
       const createDmgCommand = `resources/mac/package.sh ${ config.appName }`
       require('child_process').exec(createDmgCommand, (error, stdout, stderr) => {
         if (stdout) {
-          grunt.log.write(stdout);
+          grunt.log.write(stdout)
           resolve(stdout)
         }
         if (stderr) {
-          grunt.log.write(stderr);
+          grunt.log.write(stderr)
           reject(stderr)
         }
         if (error !== null) {
-          grunt.log.error(error);
+          grunt.log.error(error)
           reject(error)
         }
       })
